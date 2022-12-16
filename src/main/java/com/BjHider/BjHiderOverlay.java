@@ -1,61 +1,50 @@
 package com.BjHider;
 
-import net.runelite.api.Client;
-import net.runelite.client.ui.overlay.Overlay;
-import net.runelite.client.ui.overlay.OverlayLayer;
-import net.runelite.client.ui.overlay.OverlayMenuEntry;
-import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.components.LineComponent;
-import net.runelite.client.ui.overlay.components.PanelComponent;
-
+import java.awt.Dimension;
+import java.awt.Graphics2D;
 import javax.inject.Inject;
-import java.awt.*;
-import java.util.HashMap;
-import net.runelite.client.ui.overlay.tooltip.Tooltip;
-import net.runelite.client.ui.overlay.tooltip.TooltipManager;
-import net.runelite.client.util.ColorUtil;
-
-
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
 import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
 
+import net.runelite.client.ui.overlay.OverlayPanel;
+import net.runelite.client.ui.overlay.OverlayPosition;
+import net.runelite.client.ui.overlay.components.TitleComponent;
 
-public class BjHiderOverlay extends Overlay {
+class BjHiderOverlay extends OverlayPanel
+{
 
-    private BjHiderOverlay plugin;
-    private BjHiderConfig config;
-    private Client client;
-    private TooltipManager tooltipManager;
+    private final BjHiderPlugin plugin;
+    private final BjHiderConfig config;
 
-    private PanelComponent panelComponent = new PanelComponent();
-    private boolean hideSomeTOA;
 
     @Inject
-    public BjHiderOverlay(BjHiderPlugin plugin, BjHiderConfig config, Client client, TooltipManager tooltipManager) {
+    private BjHiderOverlay(BjHiderPlugin plugin, BjHiderConfig config)
+    {
         super(plugin);
         setPosition(OverlayPosition.ABOVE_CHATBOX_RIGHT);
-        setLayer(OverlayLayer.ABOVE_SCENE);
-  //      this.plugin = plugin;  //set plugin field to plugin object given as input
+        this.plugin = plugin;
         this.config = config;
-        this.client = client;
-        this.tooltipManager = tooltipManager;
-        getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "BjHiderOverlay"));
+        addMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "BjHider overlay");
     }
 
+    @Override
+    public Dimension render(Graphics2D graphics)
+    {
+        Integer count = plugin.HideCount();
 
-    private void updateConfig() {
-        hideSomeTOA = config.hideSomeTOA();
+        panelComponent.getChildren().add(TitleComponent.builder()
+                .text("ToA Hider Active")
+                .build());
+        panelComponent.getChildren().add(TitleComponent.builder()
+                .text("Discos hidden: " + count.toString())
+                .build());
+
+        panelComponent.setPreferredSize(new Dimension(
+                100,
+                1));
+
+
+        return super.render(graphics);
     }
-    public Dimension render(Graphics2D graphics) {
-        panelComponent.getChildren().clear();
 
-        if (!hideSomeTOA) {
-            panelComponent.getChildren().add(LineComponent.builder()
-                    .left("Max Hit:")
-                    .right("Right shit")
-                    .build());
-        }
-
-        return panelComponent.render(graphics);
-    }
 }

@@ -10,9 +10,9 @@ public interface BjHiderConfig extends Config {
 
 	@ConfigItem(
 			position = 1,
-			keyName = "hideSpells",
-			name = "Hide Spells",
-			description = "Configures whether or not certain projectiles are shown"
+			keyName = "ToA",
+			name = "Hide ToA Disco",
+			description = "Configures whether or not certain render-ables are shown"
 	)
 	default boolean hideSomeTOA() {
 		return true;
