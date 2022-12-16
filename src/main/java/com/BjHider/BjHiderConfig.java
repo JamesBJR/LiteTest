@@ -4,9 +4,9 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
-@ConfigGroup("example")
+@ConfigGroup("Seizure Hider")
 public interface BjHiderConfig extends Config {
-	String GROUP = "BjRhider";
+	String GROUP = "Seizure Hider";
 
 	@ConfigItem(
 			position = 1,

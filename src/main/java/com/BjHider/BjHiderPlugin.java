@@ -19,9 +19,9 @@ import net.runelite.api.Animation;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.api.ChatMessageType;
 @PluginDescriptor(
-		name = "BjR Hider",
-		description = "Hide certain projectiles",
-		tags = {"projectiles"},
+		name = "Seizure Hider",
+		description = "Hide certain projectiles and objects that cause seizures",
+		tags = {"projectiles, hide, seizure, bjr"},
 		enabledByDefault = false
 )
 
