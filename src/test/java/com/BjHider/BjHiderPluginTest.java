@@ -3,7 +3,7 @@ package com.BjHider;
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;
 
-public class ExamplePluginTest
+public class BjHiderPluginTest
 {
 	public static void main(String[] args) throws Exception
 	{
