@@ -39,7 +39,7 @@ public class BjHiderOverlay extends Overlay {
         this.config = config;
         this.client = client;
         this.tooltipManager = tooltipManager;
-        getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "Max hit overlay"));
+        getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "BjHiderOverlay"));
     }
 
 
